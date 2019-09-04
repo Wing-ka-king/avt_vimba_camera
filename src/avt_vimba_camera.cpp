@@ -1078,6 +1078,8 @@ void AvtVimbaCamera::updateROIConfig(Config& config) {
   config.height       = std::min(config.height, (int)max_height);
   config.roi_offset_x = std::min(config.roi_offset_x, config.width - 1);
   config.roi_offset_y = std::min(config.roi_offset_y, config.height - 1);
+  //config.roi_offset_x = std::min(168, config.width - 1);
+  //config.roi_offset_y = std::min(310, config.height - 1);
   config.roi_width    = std::min(config.roi_width,  config.width  - config.roi_offset_x);
   config.roi_height   = std::min(config.roi_height, config.height - config.roi_offset_y);
   // If width or height is 0, set it as large as possible

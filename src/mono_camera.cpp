@@ -135,6 +135,8 @@ void MonoCamera::updateCameraInfo(const avt_vimba_camera::AvtVimbaCameraConfig& 
   // ROI in CameraInfo is in unbinned coordinates, need to scale up
   ci.roi.x_offset = config.roi_offset_x;
   ci.roi.y_offset = config.roi_offset_y;
+  //ci.roi.x_offset = 168;
+  //ci.roi.y_offset = 310;
   ci.roi.height   = config.roi_height;
   ci.roi.width    = config.roi_width;
 
