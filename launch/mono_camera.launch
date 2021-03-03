@@ -1,14 +1,17 @@
 <launch>
 
-	<group ns="camera">
+	<arg name="camera_ip" default="192.168.1.200"/>
+	<arg name="custom_ns" default="camera_front" />
+	
+	<group ns="$(arg custom_ns)">
 		<node name="image_proc" pkg="image_proc" type="image_proc"/>
 	</group>
 
-	<node name="camera" pkg="avt_vimba_camera" type="mono_camera_node" output="screen">
+	<node name="$(arg custom_ns)" pkg="avt_vimba_camera" type="mono_camera_node" output="screen">
 		<param name="guid" value=""/>
-		<param name="ip" value="192.168.1.200"/>
-		<!--<param name="camera_info_url" value="file://$(find avt_vimba_camera)/calibrations/calibration_50-0503343290.yaml"/>-->
-		<param name="frame_id" value="camera"/>
+		<param name="ip" value="$(arg camera_ip)"/>
+		<param name="camera_info_url" value="file://$(find avt_vimba_camera)/calibrations/calibration_50-0503343290.yaml"/>
+		<param name="frame_id" value="$(arg custom_ns)"/>
 		<param name="trig_timestamp_topic" value=""/>
 		<param name="show_debug_prints" value="true"/>
 
@@ -21,7 +24,7 @@
 			6. FixedRate
 			7. Software
 		-->
-		<param name="trigger_source" value="FreeRun"/>
+		<param name="trigger_source" value="Freerun"/>
 
 		<!-- Acquisition mode:
 			1. Continuous
@@ -46,17 +49,17 @@
 		-->
 		<param name="pixel_format" value="BayerRG8"/>
 		<!-- Exposure in us -->
-		<param name="exposure" value="1000"/>
+		<param name="exposure" value="5000000"/>
 		<!-- Gain in dB -->
-		<param name="gain" value="0"/>
+		<param name="gain" value="27"/>
 
 		<!-- Auto control
 			1. Off
 			2. Once
 			3. Continuous
 		-->
-		<param name="exposure_auto" value="Continuous"/>
-		<param name="gain_auto" value="Continuous"/>
+		<param name="exposure_auto" value="Off"/>
+		<param name="gain_auto" value="Off"/>
 		<param name="whitebalance_auto" value="Continuous"/>
 
 		<param name="binning_x" value="0"/>
